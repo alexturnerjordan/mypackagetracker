@@ -48,3 +48,11 @@ def input_order():
     else:
         print("Minimum order = 200 items.")
         item_count = input("Enter a valid item count: ")
+
+current_time = order_timestamp
+    for days in travel_stages:
+        next_stage_time = current_time + datetime.timedelta(days=days)
+        tracking_events.append(next_stage_time.strftime("%x"))
+        current_time = next_stage_time
+
+    order_details = list((package_id, order_timestamp.strftime("%x"), item_count, foreign_port, tracking_events[2], tracking_events[-1]))
