@@ -9,8 +9,8 @@
 - [x] Save data into SQLite database for both order and tracking tables
 - [ ] Add functions to retrieve and display tracking status for a specific order
 - [ ] Create user-friendly interface for viewing all orders
-- [] 
-- [] 
-- [ ] 
-- [ ] 
-- [] 
+-
+ Emerging Tasks
+- [ ] Add error logging to file instead of console
+- [ ] Create JSON export of order data
+
