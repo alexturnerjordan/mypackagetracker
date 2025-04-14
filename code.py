@@ -56,3 +56,8 @@ current_time = order_timestamp
         current_time = next_stage_time
 
     order_details = list((package_id, order_timestamp.strftime("%x"), item_count, foreign_port, tracking_events[2], tracking_events[-1]))
+
+try:
+        conn.execute("INSERT INTO orders (crid, dateplaced, units, portoforigin, edd, eda) VALUES (?, ?, ?, ?, ?, ?)", order_details)
+        conn.execute("INSERT INTO trackorder (crid, orderplaced, departorigin, arrivedomestic, offload, readyintermodal, arrivedc) VALUES (?, ?, ?, ?, ?, ?, ?)", tracking_events)
+        conn.commit()
