@@ -37,3 +37,14 @@ def input_order():
 
     item_count = input("Enter number of items in the package: ")
     order_timestamp = datetime.datetime.now()
+
+    # Calculate estimated delivery times
+    if int(item_count) >= 3000:
+        foreign_port = "Yan Tin"
+        travel_stages = [0, 6, 14, 3, 2, 6]
+    elif int(item_count) >= 500:
+        foreign_port = "Sihanoukville"
+        travel_stages = [0, 5, 12, 3, 2, 6]
+    else:
+        print("Minimum order = 200 items.")
+        item_count = input("Enter a valid item count: ")
