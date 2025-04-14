@@ -61,3 +61,6 @@ try:
         conn.execute("INSERT INTO orders (crid, dateplaced, units, portoforigin, edd, eda) VALUES (?, ?, ?, ?, ?, ?)", order_details)
         conn.execute("INSERT INTO trackorder (crid, orderplaced, departorigin, arrivedomestic, offload, readyintermodal, arrivedc) VALUES (?, ?, ?, ?, ?, ?, ?)", tracking_events)
         conn.commit()
+     print("✅ Order saved to the database.")
+    except Error as e:
+        print("❌ Error saving order:", e)
