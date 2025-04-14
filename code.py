@@ -1,0 +1,24 @@
+# mypackagetracker.py
+
+import datetime  # Used for handling estimated delivery times and order timestamps
+import sqlite3  # Used to store order and tracking information locally
+from sqlite3 import Error  # To catch SQL-related errors
+from tabulate import tabulate  # Formats data in tables for better readability
+
+database_file = "mypackagetracker.db"  # Renamed database to match project
+
+def create_connection(db_file):
+    """Establishes a connection to the SQLite database file provided."""
+    try:
+        connection = sqlite3.connect(db_file)
+        return connection
+    except Error as e:
+        print("Connection error:", e)
+        return None
+
+conn = create_connection(database_file)
+
+if conn:
+    print("✅ Connected to database.")
+else:
+    print("❌ Failed to connect to database.")
