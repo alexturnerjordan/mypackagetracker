@@ -2,10 +2,15 @@
 
 - [x] Find a Github repository to use. Found a repsoitory that is very similar to my project. Theirs is more complex, as it deals with also ordering in the actual application itself. https://github.com/ksu-is/OrderTrackingSystem
 - [x] Update readme, commit changes, create project roadmamp.
-- [] 
-- [] 
+- [x] Set up SQLite database connection
+- [x] Add order input logic and validation for Package ID
+- [x] Implement logic for determining foreign port based on item count
+- [x] Calculate and store tracking dates for package delivery
+- [x] Save data into SQLite database for both order and tracking tables
+- [ ] Add functions to retrieve and display tracking status for a specific order
+- [ ] Create user-friendly interface for viewing all orders
 - [] 
 - [] 
 - [ ] 
 - [ ] 
-- [ ] 
+- [] 
