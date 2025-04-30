@@ -104,3 +104,22 @@ def retrieve_tracking(package_id=None):
     except Error as e:
         print("❌ Error retrieving tracking info:", e)
         return []
+
+        # Function to display order and tracking summary for a package
+def order_summary():
+    try:
+        all_orders = retrieve_order()
+        print(tabulate(all_orders, headers="firstrow"))
+
+        selected_id = input("Enter Package ID to view details: ")
+        summary = retrieve_order(selected_id)
+        print("\nOrder Information:")
+        print(tabulate(summary, headers="firstrow"))
+
+        tracking = retrieve_tracking(selected_id)
+        print("\nTracking Progress:")
+        for status, date in zip(*tracking):
+            print(f"{status} : {date}\n")
+
+    except Error as e:
+        print("❌ Error displaying summary:", e)
