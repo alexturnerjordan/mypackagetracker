@@ -17,9 +17,9 @@ def create_connection(db_file):
 conn = create_connection(database_file)
 
 if conn:
-    print("✅ Connected to database.")
+    print("Connected to database.")
 else:
-    print("❌ Failed to connect to database.")
+    print("Failed to connect to database.")
 
 # Function to enter a new package order into the system
 def input_order():
@@ -31,7 +31,7 @@ def input_order():
         if package_id[:3].isalpha() and package_id[3:].isnumeric():
             break
         else:
-            print("❌ Invalid Package ID format. Try again.")
+            print("Invalid Package ID format. Try again.")
             package_id = input("Enter Package ID (3 letters + 4 numbers): ")
     tracking_events.append(package_id)
 
@@ -82,7 +82,7 @@ try:
         return orders
 
     except Error as e:
-        print("❌ Error retrieving order:", e)
+        print("Error retrieving order:", e)
         return []
 # Function to retrieve tracking events for a given package
 
@@ -102,7 +102,7 @@ def retrieve_tracking(package_id=None):
         return tracking_info
 
     except Error as e:
-        print("❌ Error retrieving tracking info:", e)
+        print("Error retrieving tracking info:", e)
         return []
 
         # Function to display order and tracking summary for a package
@@ -122,4 +122,31 @@ def order_summary():
             print(f"{status} : {date}\n")
 
     except Error as e:
-        print("❌ Error displaying summary:", e)
+        print("Error displaying summary:", e)
+
+         CLI loop to navigate features
+while True:
+    print('''\nWelcome to MyPackageTracker CLI
+1 = Place a new package order
+2 = View all package orders
+3 = View order details and tracking
+4 = View tracking info for all orders
+(Press Enter to exit)
+''')
+    action = input("Select an option: ")
+
+    if action == "1":
+        input_order()
+    elif action == "2":
+        orders = retrieve_order()
+        print(tabulate(orders, headers="firstrow"))
+    elif action == "3":
+        order_summary()
+    elif action == "4":
+        tracking_data = retrieve_tracking()
+        print(tabulate(tracking_data, headers="firstrow"))
+    elif action == "":
+        print("Exiting MyPackageTracker. Goodbye!")
+        break
+    else:
+        print("Invalid selection. Please try again.")
