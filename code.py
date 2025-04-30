@@ -61,6 +61,27 @@ try:
         conn.execute("INSERT INTO orders (crid, dateplaced, units, portoforigin, edd, eda) VALUES (?, ?, ?, ?, ?, ?)", order_details)
         conn.execute("INSERT INTO trackorder (crid, orderplaced, departorigin, arrivedomestic, offload, readyintermodal, arrivedc) VALUES (?, ?, ?, ?, ?, ?, ?)", tracking_events)
         conn.commit()
-     print("✅ Order saved to the database.")
+     print("Order saved to the database.")
     except Error as e:
-        print("❌ Error saving order:", e)
+        print("Error saving order:", e)
+       
+       
+        def retrieve_order(package_id=None):
+    try:
+        if package_id:
+            cursor = conn.execute("SELECT * FROM orders WHERE crid = ?", (package_id,))
+        else:
+            cursor = conn.execute("SELECT * FROM orders")
+        
+        headers = [col[0].upper() for col in cursor.description]
+        orders = [headers]
+
+        for row in cursor:
+            orders.append(list(row))
+
+        return orders
+
+    except Error as e:
+        print("❌ Error retrieving order:", e)
+        return []
+
