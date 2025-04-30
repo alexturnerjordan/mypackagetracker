@@ -84,4 +84,23 @@ try:
     except Error as e:
         print("❌ Error retrieving order:", e)
         return []
+# Function to retrieve tracking events for a given package
 
+def retrieve_tracking(package_id=None):
+    try:
+        if package_id:
+            cursor = conn.execute("SELECT * FROM trackorder WHERE crid = ?", (package_id,))
+        else:
+            cursor = conn.execute("SELECT * FROM trackorder")
+
+        headers = [col[0].upper() for col in cursor.description]
+        tracking_info = [headers]
+
+        for row in cursor:
+            tracking_info.append(list(row))
+
+        return tracking_info
+
+    except Error as e:
+        print("❌ Error retrieving tracking info:", e)
+        return []
